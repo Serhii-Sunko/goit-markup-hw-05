@@ -14,6 +14,8 @@
   --bgc-backdrop: rgba(0, 0, 0, 0.2);
   --shadow-for-modal: rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
+  --bgc-close-modal-btn: rgba(0, 0, 0, 0.1);
+  --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --font-size14px: 14px;
   --font-size16px: 16px;
   --font-size18px: 18px;
@@ -113,9 +115,7 @@ body {
   display: block;
   padding-top: 32px;
 
-  transition-property: background-color, color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color, color var(--animation);
 }
 .site-nav-list .current::after {
   content: '';
@@ -167,9 +167,7 @@ body {
   padding-top: 32px;
   padding-bottom: 32px;
 
-  transition-property: color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--animation);
 }
 .auth-nav-link:hover,
 .auth-nav-link:focus {
@@ -399,12 +397,6 @@ body {
   margin-right: 10px;
 }
 
-.team-social-link:hover {
-  background-color: var(--accent-color);
-  fill: var(--background-color);
-  border-radius: 50%;
-}
-
 .team-social-link {
   display: flex;
   justify-content: center;
@@ -413,6 +405,12 @@ body {
   width: 44px;
   border-radius: 50%;
   fill: var(--team-social-color);
+  transition: fill, background-color var(--animation);
+}
+.team-social-link:hover {
+  background-color: var(--accent-color);
+  fill: var(--background-color);
+  border-radius: 50%;
 }
 .our-team-wrapper {
   padding: 30px 0;
@@ -433,36 +431,25 @@ body {
   padding-bottom: 94px;
 }
 .our-clients-list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 170px;
-  border: 1px solid var(--client-color);
-  border-radius: 4px;
   margin-right: 30px;
-
-  transition-property: border-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .our-clients-item {
+  display: block;
+  border-radius: 4px;
+  border: 1px solid var(--client-color);
+  fill: var(--team-social-color);
   padding: 16px 32px;
   cursor: pointer;
 
-  transition-property: background-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border, fill var(--animation);
 }
-.our-clients-item {
-  fill: var(--team-social-color);
-}
+
 .our-clients-list:last-child {
   margin-right: 0;
 }
-.our-clients-list:hover {
-  border-color: var(--accent-color);
-}
+
 .our-clients-item:hover {
+  border-color: var(--accent-color);
   fill: var(--accent-color);
 }
 /* Footer  */
@@ -499,9 +486,7 @@ body {
   background-color: var(--footer-bgc);
   border-radius: 50%;
 
-  transition-property: background-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--animation);
 }
 .social-link:hover {
   background-color: var(--accent-color);
@@ -585,9 +570,7 @@ body {
   text-align: center;
   background: var(--background-color);
 
-  transition-property: background-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: background-color var(--animation);
 }
 .portfolio-btn-list {
   background: var(--background-color);
@@ -598,13 +581,16 @@ body {
   justify-content: center;
 }
 .portfolio-btn {
+  font-style: var(--font-style);
+  font-weight: var(--font-weight500);
+  font-size: var(--font-size16px);
+  line-height: 1.62;
+  letter-spacing: 0.03em;
   cursor: pointer;
   padding: 6px 22px;
   border: none;
   border-radius: 4px;
-  transition-property: color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--animation);
 }
 
 .portfolio-btn:hover,
@@ -619,11 +605,6 @@ body {
 
 .portfolio-btn-item:hover,
 .portfolio-btn-item:focus {
-  font-style: var(--font-style);
-  font-weight: var(--font-weight500);
-  font-size: var(--font-size16px);
-  line-height: 1.62;
-  letter-spacing: 0.03em;
   color: var(--background-color);
 }
 
@@ -635,7 +616,10 @@ body {
   margin-right: -30px;
   margin-bottom: -30px;
 }
-
+.img-thump {
+  position: relative;
+  overflow: hidden;
+}
 .information-thump {
   position: absolute;
   left: 0;
@@ -643,10 +627,7 @@ body {
   width: 100%;
   height: 100%;
   transform: translatey(100%);
-  transition-property: background-color, transform;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
+  transition: background-color, transform var(--animation);
   padding: 63px 24px;
 }
 
@@ -667,19 +648,12 @@ body {
 }
 
 .portfolio-li {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-
   flex-basis: calc(100% / 3 - 30px);
   margin-right: 30px;
   margin-bottom: 30px;
 
   border: 1px solid var(--portfolio-bgc);
-  transition-property: box-shadow;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow var(--animation);
 }
 
 .portfolio-li:hover {
@@ -717,7 +691,6 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: var(--bgc-backdrop);
-  z-index: 100;
 
   opacity: 1;
   visibility: visible;
@@ -745,14 +718,15 @@ body {
   height: 30px;
 
   margin: 0;
-  padding: 0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: transparent;
-  background-size: contain;
+  padding: 5px;
+  border: 1px solid var(--bgc-close-modal-btn);
   cursor: pointer;
+  background-color: var(--background-color);
+  border-radius: 50%;
 }
-.is-hidden {
+
+/* .is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-}
+} */
